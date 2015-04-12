@@ -1,3 +1,7 @@
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+
 CC := g++ # This is the main compiler
 # # CC := clang --analyze # and comment out the linker last line for sanity
 SRCDIR := src
@@ -10,6 +14,26 @@ OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 CFLAGS := -g # -Wall
 LIB := -pthread -L lib
 INC := -I include
+
+endif
+
+
+ifeq ($(UNAME), Darwin)
+
+CC := g++ # This is the main compiler
+# # CC := clang --analyze # and comment out the linker last line for sanity
+SRCDIR := src
+BUILDDIR := build
+TARGET := bin/mossman
+#  
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g # -Wall
+LIB := -L lib
+INC := -I include
+
+endif
 
 $(TARGET): $(OBJECTS)
 	@echo " Linking..."
