@@ -1,13 +1,11 @@
 #include <iostream>
 
-#include <mossman/core/engine.h>
+#include <mossman/core/application.h>
 
 using namespace mossman;
 
 int main() {
-	std::cout << "Well hello there";
+    Application app;
 
-	Engine engine;
-
-	engine.run();
+    app.run();
 }
