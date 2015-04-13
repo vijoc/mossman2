@@ -18,6 +18,24 @@ INC := -I include
 endif
 
 
+ifeq ($(UNAME), CYGWIN_NT-6.1)
+
+CC := g++ # This is the main compiler
+# # CC := clang --analyze # and comment out the linker last line for sanity
+SRCDIR := src
+BUILDDIR := build
+TARGET := bin/mossman
+#  
+SRCEXT := cpp
+SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+CFLAGS := -g # -Wall
+LIB := -L /cygdrive/c/MinGW/lib 
+INC := -I include
+
+endif
+
+
 ifeq ($(UNAME), Darwin)
 
 CC := g++ # This is the main compiler
