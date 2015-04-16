@@ -11,7 +11,7 @@ TARGET := bin/mossman
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -g # -Wall
+CFLAGS := -g -std=c++0x # -Wall
 LIB := -pthread -L lib -lsfml-graphics -lsfml-window -lsfml-system
 INC := -I include
 
@@ -29,7 +29,7 @@ TARGET := bin/mossman
 SRCEXT := cpp
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS := -g # -Wall
+CFLAGS := -g -std=c++0x # -Wall
 LIB := -L lib -lsfml-graphics -lsfml-window -lsfml-system
 INC := -I include
 
